@@ -15,11 +15,16 @@ public class GyroCamera : MonoBehaviour
     {
         gyroSupported = SystemInfo.supportsGyroscope;
 
+        GameObject camParent = new GameObject("CamParent");
+
         if(gyroSupported)
         {
             print("Gyro Supported!");
             gyroscope = Input.gyro;
             gyroscope.enabled = true;
+
+            camParent.transform.rotation = Quaternion.Euler(90, 180, 0);
+            rotationFix = new Quaternion(0, 0, 1, 0);
         }
 	}
 	

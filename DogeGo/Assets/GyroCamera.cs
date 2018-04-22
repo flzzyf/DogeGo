@@ -35,7 +35,8 @@ public class GyroCamera : MonoBehaviour
             ResetGyroRotation();
         }
 
-        transform.rotation = gyroscope.attitude * rotationFix;
+        if (gyroSupported)
+            transform.rotation = gyroscope.attitude * rotationFix;
 	}
 
     void ResetGyroRotation()

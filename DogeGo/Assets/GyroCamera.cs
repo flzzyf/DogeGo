@@ -30,12 +30,10 @@ public class GyroCamera : MonoBehaviour
             gyroscope = Input.gyro;
             gyroscope.enabled = true;
 
-            camParent.transform.rotation = Quaternion.Euler(90, 180, 0);
-            rotationFix = new Quaternion(0, 0, 1, 0);
+            //camParent.transform.rotation = Quaternion.Euler(90, 180, 0);
+            //rotationFix = new Quaternion(0, 0, 1, 0);
         }
 	}
-
-    int a = 0;
 
 	void Update () 
     {
@@ -44,7 +42,7 @@ public class GyroCamera : MonoBehaviour
             ResetGyroRotation();
         }
 
-        if (gyroSupported)
+        if (gyroSupported && buttoned)
         {
             gyroscope = Input.gyro;
             gyroscope.enabled = true;
@@ -52,11 +50,7 @@ public class GyroCamera : MonoBehaviour
             //transform.rotation = gyroscope.attitude * rotationFix;
             transform.rotation = gyroscope.attitude;
 
-            a++;
-
-            //t[1].text = "Att: " + Input.gyro.attitude;
-            t[1].text = transform.rotation.ToString();
-            t[2].text = a.ToString();
+            t[1].text = "Att: " + Input.gyro.attitude;
             //t[2].text = "Att: " + Input.gyro.attitude.eulerAngles;
         }
 
@@ -67,5 +61,11 @@ public class GyroCamera : MonoBehaviour
     {
         startY = transform.eulerAngles.y;
         worldObj.rotation = Quaternion.Euler(0, startY, 0);
+    }
+
+    bool buttoned = false;
+    public void button()
+    {
+        buttoned = true;
     }
 }

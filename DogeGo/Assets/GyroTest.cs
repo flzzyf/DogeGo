@@ -6,15 +6,13 @@ using System.Text;
 
 using UnityEngine;
 
-namespace Game.Gyro
-{
 
     /// <summary>  
     /// 职责:   
     ///     1.实现陀螺仪对相机的影响和操作；  
     ///     2.尽量重现崩坏3的主界面驾驶舱效果；  
     /// </summary>  
-    class GyroCamera : MonoBehaviour
+    class GyroTest : MonoBehaviour
     {
 
         #region 声明  
@@ -147,13 +145,13 @@ namespace Game.Gyro
         /// <summary> 绘制UI，方便调试 </summary>  
         void OnGUI()
         {
-            //GUI.Label(GetRect(0.1f, 0.05f), "Attitude: " + Input.gyro.attitude);  
+            GUI.Label(GetRect(0.1f, 0.05f), "Attitude: " + Input.gyro.attitude);  
 
-            //GUI.Label(GetRect(0.1f, 0.15f), "Rotation: " + Input.gyro.rotationRate);  
+            GUI.Label(GetRect(0.1f, 0.15f), "Rotation: " + Input.gyro.rotationRate);  
 
-            //GUI.Label(GetRect(0.1f, 0.25f), "RotationUnbiased: " + Input.gyro.rotationRateUnbiased);  
+            GUI.Label(GetRect(0.1f, 0.25f), "RotationUnbiased: " + Input.gyro.rotationRateUnbiased);  
 
-            //GUI.Label(GetRect(0.1f, 0.35f), "UserAcceleration: " + Input.gyro.userAcceleration);  
+            GUI.Label(GetRect(0.1f, 0.35f), "UserAcceleration: " + Input.gyro.userAcceleration);  
 
             //// 陀螺仪的系数  
             //{  
@@ -298,4 +296,3 @@ namespace Game.Gyro
 
     }
 
-}

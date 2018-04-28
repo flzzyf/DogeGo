@@ -13,10 +13,9 @@ public class GyroCamera : MonoBehaviour
     Gyroscope gyroscope;
     bool gyroSupported;
 
-
 	void Start () 
     {
-        //Init();
+        Init();
 	}
 
     void Init()
@@ -34,16 +33,13 @@ public class GyroCamera : MonoBehaviour
             gyroscope = Input.gyro;
             gyroscope.enabled = true;
 
-            camParent.transform.rotation = Quaternion.Euler(90f, 180f, 0);
+            camParent.transform.rotation = Quaternion.Euler(90f, 90f, 0);
             rotationFix = new Quaternion(0, 0, 1, 0);
         }
     }
 
 	void Update () 
     {
-        if (!buttoned)
-            return;
-
         if(gyroSupported && startY == 0)
         {
             ResetGyroRotation();
@@ -66,15 +62,6 @@ public class GyroCamera : MonoBehaviour
     {
         startY = transform.eulerAngles.y;
         worldObj.rotation = Quaternion.Euler(0, startY, 0);
-    }
-
-    bool buttoned = false;
-
-    public void Button()
-    {
-        buttoned = true;
-
-        Init();
     }
 
 }

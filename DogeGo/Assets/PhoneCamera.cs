@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class PhoneCamera : MonoBehaviour 
 {
-    RawImage image;
+    public RawImage image;
     WebCamTexture camTexture;
 
-    AspectRatioFitter aspectRatioFitter;
+    public AspectRatioFitter aspectRatioFitter;
 
     Texture defaultBackground;
 
+    bool cameraAvailable = false;
+
 	void Start () 
     {
-        image = GetComponent<RawImage>();
-
         defaultBackground = image.texture;
 
     }
@@ -42,11 +42,24 @@ public class PhoneCamera : MonoBehaviour
 
                 camTexture.Play();
                 image.texture = camTexture;
+
+                cameraAvailable = true;
             }
         }
     }
 
-	void Update () {
-		
+	void Update () 
+    {
+        if (!cameraAvailable)
+            return;
+
+        float ratio = camTexture.width / camTexture.height;
+        aspectRatioFitter.aspectRatio = ratio;
+
+        float scaleY = camTexture.videoVerticallyMirrored ? -1 : 1;
+        image.rectTransform.localScale = new Vector3(1, scaleY, 1);
+
+        int orient = -camTexture.videoRotationAngle;
+        image.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
 	}
 }

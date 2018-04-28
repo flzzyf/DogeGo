@@ -8,6 +8,8 @@ public class CameraBackground : MonoBehaviour
     RawImage image;
     WebCamTexture camTexture;
 
+    AspectRatioFitter aspectRatioFitter;
+
 	void Start ()
     {
         image = GetComponent<RawImage>();
@@ -16,8 +18,5 @@ public class CameraBackground : MonoBehaviour
         image.texture = camTexture;
         camTexture.Play();
 	}
-	
-	void Update () {
-		
-	}
+
 }

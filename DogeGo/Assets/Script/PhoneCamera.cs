@@ -26,12 +26,12 @@ public class PhoneCamera : MonoBehaviour
 
         if (device.Length == 0)
         {
-            GameManager.instance.t[2].text = "无可用摄像头";
+            //GameManager.instance.t[2].text = "无可用摄像头";
 
             return;
         }
 
-        GameManager.instance.t[2].text = "可用摄像头数：" + device.Length;
+        //GameManager.instance.t[2].text = "可用摄像头数：" + device.Length;
 
 
         for (int i = 0; i < device.Length; i++)

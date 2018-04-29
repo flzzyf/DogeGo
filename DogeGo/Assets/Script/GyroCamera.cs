@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class GyroCamera : MonoBehaviour 
 {
-    public Transform worldObj;
-
-    float startY;
     Quaternion rotationFix;
 
     Gyroscope gyroscope;
@@ -22,7 +19,7 @@ public class GyroCamera : MonoBehaviour
     {
         gyroSupported = SystemInfo.supportsGyroscope;
 
-        GameManager.instance.t[0].text = "Gyro Supported: " + gyroSupported.ToString();
+        //GameManager.instance.t[0].text = "Gyro Supported: " + gyroSupported.ToString();
 
         GameObject camParent = new GameObject("CamParent");
         camParent.transform.position = transform.position;
@@ -33,18 +30,14 @@ public class GyroCamera : MonoBehaviour
             gyroscope = Input.gyro;
             gyroscope.enabled = true;
 
-            camParent.transform.rotation = Quaternion.Euler(90f, 90f, 0);
+            camParent.transform.rotation = Quaternion.Euler(90f, 180f, 0);
             rotationFix = new Quaternion(0, 0, 1, 0);
+
         }
     }
 
 	void Update () 
     {
-        if(gyroSupported && startY == 0)
-        {
-            ResetGyroRotation();
-        }
-
         if (gyroSupported)
         {
             gyroscope = Input.gyro;
@@ -52,16 +45,12 @@ public class GyroCamera : MonoBehaviour
 
             transform.localRotation = gyroscope.attitude * rotationFix;
 
-            GameManager.instance.t[1].text = "Attitude: " + Input.gyro.attitude.eulerAngles;
+            GameManager.instance.t[0].text = "att:" + gyroscope.attitude.eulerAngles;
+            GameManager.instance.t[1].text = "attFix:" + (gyroscope.attitude * rotationFix).eulerAngles;
+
+            //GameManager.instance.t[1].text = "Rotation: " + transform.eulerAngles;
+            //GameManager.instance.t[2].text = "LocalRo: " + transform.localEulerAngles;
         }
-
-
-    }
-
-    void ResetGyroRotation()
-    {
-        startY = transform.eulerAngles.y;
-        worldObj.rotation = Quaternion.Euler(0, startY, 0);
     }
 
 }

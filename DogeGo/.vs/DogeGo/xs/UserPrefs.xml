@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{54130F9F-0D0A-1348-C964-06A7CDF4D8BB}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/GameManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MapManager.cs">
     <Files>
       <File FileName="Assets/Script/GyroCamera.cs" Line="56" Column="52" />
       <File FileName="Assets/Script/PhoneCamera.cs" Line="22" Column="5" />
-      <File FileName="Assets/Script/GameManager.cs" Line="12" Column="15" />
+      <File FileName="Assets/Script/GameManager.cs" Line="28" Column="9" />
+      <File FileName="Assets/MapManager.cs" Line="7" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

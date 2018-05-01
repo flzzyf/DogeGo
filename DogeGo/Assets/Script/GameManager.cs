@@ -23,4 +23,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(_index);
     }
 
+    public void Enable()
+    {
+        
+    }
+
+
 }

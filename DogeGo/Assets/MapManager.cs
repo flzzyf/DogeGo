@@ -33,7 +33,13 @@ public class MapManager : MonoBehaviour
         if(Input.location.lastData.longitude != lastPos.x || 
            Input.location.lastData.latitude != lastPos.y)
         {
-            GameManager.instance.t[0].text = "移动";
+
+            Vector2 offset = new Vector2(Input.location.lastData.longitude - lastPos.x,
+                                         Input.location.lastData.latitude - lastPos.y);
+
+            GameManager.instance.t[0].text = offset.ToString();
+
+            StartCoroutine(LoadMap(zoom));
 
             lastPos.x = Input.location.lastData.longitude;
             lastPos.y = Input.location.lastData.latitude;

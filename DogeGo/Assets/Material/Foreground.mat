@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Grid
-  m_Shader: {fileID: 4800000, guid: ad732f3debe9543c5a48eab80db9e1f7, type: 3}
+  m_Name: Foreground
+  m_Shader: {fileID: 4800000, guid: 8f2ea3f610a394f05bf6020ad9e4cb73, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -62,8 +62,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _GridSpacing: 1.15
-    - _GridThickness: 0.05
+    - _InvFade: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -76,5 +75,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GridColor: {r: 0.4764151, g: 1, b: 0.551588, a: 1}
-    - _OutsideColor: {r: 0, g: 0, b: 0, a: 0.5019608}
+    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

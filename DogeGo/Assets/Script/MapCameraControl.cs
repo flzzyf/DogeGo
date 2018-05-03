@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapCameraControl : MonoBehaviour 
+public class MapCameraControl : MonoBehaviour
 {
     public float scaleRate = 1;
 
@@ -12,24 +12,29 @@ public class MapCameraControl : MonoBehaviour
 
     float currentDistance;  //当前两点距离
 
-	void Update () 
+    public Transform world;
+
+    void Update()
     {
-        if(Input.touchCount > 1)    //多点齐下
+        if (Application.platform != RuntimePlatform.IPhonePlayer)
+            return;
+        
+        if (Input.touchCount > 1)    //多点齐下
         {
-            if(Input.GetTouch(0).phase == TouchPhase.Began ||
+            if (Input.GetTouch(0).phase == TouchPhase.Began ||
                Input.GetTouch(1).phase == TouchPhase.Began) //点击开始
             {
-                currentDistance = Vector2.Distance(Input.GetTouch(0).position, 
+                currentDistance = Vector2.Distance(Input.GetTouch(0).position,
                                                    Input.GetTouch(1).position);
             }
-            else if(Input.GetTouch(0).phase == TouchPhase.Moved ||
+            else if (Input.GetTouch(0).phase == TouchPhase.Moved ||
                     Input.GetTouch(1).phase == TouchPhase.Moved)
             {
                 float scaleValue = Vector2.Distance(Input.GetTouch(0).position,
                                                    Input.GetTouch(1).position)
                                           - currentDistance;
                 scaleValue *= scaleRate;
-                //scaleValue *= Time.deltaTime;
+                scaleValue *= Time.deltaTime;
 
                 Vector3 pos = cam.localPosition;
                 pos.z *= -1;
@@ -46,19 +51,15 @@ public class MapCameraControl : MonoBehaviour
                 currentDistance = Vector2.Distance(Input.GetTouch(0).position,
                                                    Input.GetTouch(1).position);
             }
-            else if(Input.GetTouch(0).phase == TouchPhase.Ended ||
-                    Input.GetTouch(1).phase == TouchPhase.Ended)
-            {
-                
-            }
+
         }
         else //单点
         {
             Vector2 lastPos = Input.GetTouch(0).deltaPosition;
 
-            GameManager.instance.SetText("lastPos", lastPos.ToString());
+            //GameManager.instance.SetText("lastPos", lastPos.ToString());
 
-            transform.Rotate(Vector3.up * lastPos.x, Space.World);
+            world.Rotate(-Vector3.up * lastPos.x, Space.World);
         }
-	}
+    }
 }

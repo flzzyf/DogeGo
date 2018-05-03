@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour 
 {
+    #region Singleton
     public static GameManager instance;
 
 	private void Awake()
@@ -15,10 +16,11 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
 	}
+#endregion
 
-	public Text screenText;
+    public Text screenText;
 
-    Dictionary<string, string> txt = new Dictionary<string, string>();
+	Dictionary<string, string> txt = new Dictionary<string, string>();
 
     public void SetText(string _key, string _string)
     {

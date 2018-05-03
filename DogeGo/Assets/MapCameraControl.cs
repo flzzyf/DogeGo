@@ -10,10 +10,6 @@ public class MapCameraControl : MonoBehaviour
 
     public Transform cam;
 
-	void Start () {
-		
-	}
-
     float currentDistance;  //当前两点距离
 
 	void Update () 
@@ -33,22 +29,36 @@ public class MapCameraControl : MonoBehaviour
                                                    Input.GetTouch(1).position)
                                           - currentDistance;
                 scaleValue *= scaleRate;
+                //scaleValue *= Time.deltaTime;
 
-                Vector3 pos = transform.position;
+                Vector3 pos = cam.localPosition;
+                pos.z *= -1;
+
                 pos.z += scaleValue;
 
                 pos.z = Mathf.Clamp(pos.z, scaleLimit.x, scaleLimit.y);
 
-                GameManager.instance.t[0].text = scaleValue.ToString();
+                //GameManager.instance.SetText(2, scaleValue.ToString());
 
-                transform.position = pos;
+                pos.z *= -1;
+                cam.localPosition = pos;
+
+                currentDistance = Vector2.Distance(Input.GetTouch(0).position,
+                                                   Input.GetTouch(1).position);
+            }
+            else if(Input.GetTouch(0).phase == TouchPhase.Ended ||
+                    Input.GetTouch(1).phase == TouchPhase.Ended)
+            {
+                
             }
         }
         else //单点
         {
-            float mouseX = Input.GetAxis("Mouse X");
+            Vector2 lastPos = Input.GetTouch(0).deltaPosition;
 
-            transform.Rotate(transform.up * mouseX);
+            GameManager.instance.SetText("lastPos", lastPos.ToString());
+
+            transform.Rotate(Vector3.up * lastPos.x, Space.World);
         }
 	}
 }

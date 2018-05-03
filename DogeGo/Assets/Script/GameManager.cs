@@ -16,17 +16,35 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 	}
 
-	public Text[] t;
+	public Text screenText;
+
+    Dictionary<string, string> txt = new Dictionary<string, string>();
+
+    public void SetText(string _key, string _string)
+    {
+        txt[_key] = _string;
+
+        string s = "";
+
+        foreach (KeyValuePair<string, string> it in txt)
+        {
+            s += it.Key;
+            s += ":";
+            s += it.Value;
+            s += "\r\n";
+        }
+
+        screenText.text = s;
+    }
 
     public void LoadScene(int _index)
     {
         SceneManager.LoadScene(_index);
     }
 
-    public void Enable()
+    public void Terminate()
     {
-        
+        Application.Quit();
     }
-
 
 }

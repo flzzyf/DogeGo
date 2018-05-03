@@ -37,7 +37,7 @@ public class MapManager : MonoBehaviour
             Vector2 offset = new Vector2(Input.location.lastData.longitude - lastPos.x,
                                          Input.location.lastData.latitude - lastPos.y);
 
-            GameManager.instance.t[0].text = offset.ToString();
+            //GameManager.instance.SetText(0, offset.ToString());
 
             StartCoroutine(LoadMap(zoom));
 
@@ -45,9 +45,10 @@ public class MapManager : MonoBehaviour
             lastPos.y = Input.location.lastData.latitude;
         }
 
-        GameManager.instance.t[1].text = "location: " +
+        GameManager.instance.SetText("loc", 
             Input.location.lastData.longitude + "," +
-            Input.location.lastData.latitude;
+            Input.location.lastData.latitude);
+
 
 
 	}

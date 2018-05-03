@@ -933,6 +933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1854872353}
   - component: {fileID: 1854872352}
+  - component: {fileID: 1854872354}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -951,7 +952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87414e17cf9b6445fb11a1d67db59395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  t: []
+  screenText: {fileID: 0}
 --- !u!4 &1854872353
 Transform:
   m_ObjectHideFlags: 0
@@ -965,6 +966,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1854872354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1854872351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c21ea699fb6e54992bfc112e163b6818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchParticle: {fileID: 1807005775933952, guid: 04c9874a99f504c6aae7bf9291eab67e,
+    type: 2}
 --- !u!1 &2003945043
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,4 +49,9 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void Test()
+    {
+        SetText("test", "click");
+    }
+
 }

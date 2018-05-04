@@ -39,7 +39,7 @@ public class MapCameraControl : MonoBehaviour
                 Vector3 pos = cam.localPosition;
                 pos.z *= -1;
 
-                pos.z += scaleValue;
+                pos.z -= scaleValue;
 
                 pos.z = Mathf.Clamp(pos.z, scaleLimit.x, scaleLimit.y);
 

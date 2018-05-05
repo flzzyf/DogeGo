@@ -16,9 +16,9 @@ public class MapCameraControl : MonoBehaviour
 
     void Update()
     {
-        if (Application.platform != RuntimePlatform.IPhonePlayer)
+        if (!Input.touchSupported)
             return;
-        
+
         if (Input.touchCount > 1)    //多点齐下
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began ||
@@ -43,7 +43,8 @@ public class MapCameraControl : MonoBehaviour
 
                 pos.z = Mathf.Clamp(pos.z, scaleLimit.x, scaleLimit.y);
 
-                //GameManager.instance.SetText(2, scaleValue.ToString());
+                GameManager.instance.SetText("scaleValue", scaleValue.ToString());
+                print(scaleValue);
 
                 pos.z *= -1;
                 cam.localPosition = pos;

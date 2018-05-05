@@ -32,6 +32,7 @@ public class TouchParticle : MonoBehaviour
                 }
                 else if (touch.phase == TouchPhase.Ended)
                 {
+                    touchParticles[touch.fingerId].GetComponent<ParticleSystem>().emissionRate = 0;
                     Destroy(touchParticles[touch.fingerId], 1f);
                     touchParticles.Remove(touch.fingerId);
                 }

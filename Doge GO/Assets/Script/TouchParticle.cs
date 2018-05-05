@@ -27,7 +27,7 @@ public class TouchParticle : MonoBehaviour
 
                     touchParticles[touch.fingerId].transform.position = particlePos;
 
-                    //GameManager.instance.SetText("touchPos", particlePos.ToString());
+                    GameManager.instance.SetText("touchPos", particlePos.ToString());
 
                 }
                 else if (touch.phase == TouchPhase.Ended)

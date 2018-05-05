@@ -14,7 +14,17 @@ public class MapCameraControl : MonoBehaviour
 
     public Transform world;
 
-    void Update()
+    float scaleValue = 0.5f;
+
+    public Vector2 camAngle;
+    public Vector2 camDistance;
+
+	private void Start()
+	{
+        ChangeViewAngle(scaleValue);
+	}
+
+	void Update()
     {
         if (!Input.touchSupported)
             return;
@@ -30,27 +40,24 @@ public class MapCameraControl : MonoBehaviour
             else if (Input.GetTouch(0).phase == TouchPhase.Moved ||
                     Input.GetTouch(1).phase == TouchPhase.Moved)
             {
-                float scaleValue = Vector2.Distance(Input.GetTouch(0).position,
-                                                   Input.GetTouch(1).position)
-                                          - currentDistance;
-                scaleValue *= scaleRate;
-                scaleValue *= Time.deltaTime;
-
-                Vector3 pos = cam.localPosition;
-                pos.z *= -1;
-
-                pos.z -= scaleValue;
-
-                pos.z = Mathf.Clamp(pos.z, scaleLimit.x, scaleLimit.y);
-
-                GameManager.instance.SetText("scaleValue", scaleValue.ToString());
-                print(scaleValue);
-
-                pos.z *= -1;
-                cam.localPosition = pos;
+                float formerDistance = currentDistance;
 
                 currentDistance = Vector2.Distance(Input.GetTouch(0).position,
                                                    Input.GetTouch(1).position);
+
+                float distanceChange = currentDistance - formerDistance;
+
+                distanceChange *= scaleRate;
+                distanceChange *= Time.deltaTime;
+
+                scaleValue -= distanceChange;
+
+                scaleValue = Mathf.Clamp01(scaleValue);
+
+                GameManager.instance.SetText("scaleValue", scaleValue.ToString("f4"));
+
+                ChangeViewAngle(scaleValue);
+ 
             }
 
         }
@@ -58,9 +65,17 @@ public class MapCameraControl : MonoBehaviour
         {
             Vector2 lastPos = Input.GetTouch(0).deltaPosition;
 
-            //GameManager.instance.SetText("lastPos", lastPos.ToString());
-
             world.Rotate(-Vector3.up * lastPos.x, Space.World);
         }
+    }
+
+    void ChangeViewAngle(float _value)
+    {
+        transform.eulerAngles = new Vector3((camAngle.y - camAngle.x) * _value + camAngle.x, 0, 0);
+
+        Vector3 pos = cam.localPosition;
+        pos.z = (camDistance.y - camDistance.x) * _value + camDistance.x;
+        cam.localPosition = pos;
+
     }
 }

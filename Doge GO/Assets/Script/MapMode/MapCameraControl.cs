@@ -55,7 +55,7 @@ public class MapCameraControl : MonoBehaviour
 
                 scaleValue = Mathf.Clamp01(scaleValue);
 
-                GameManager.instance.SetText("scaleValue", scaleValue.ToString("f4"));
+                //GameManager.instance.SetText("scaleValue", scaleValue.ToString("f4"));
 
                 ChangeViewAngle(scaleValue);
  

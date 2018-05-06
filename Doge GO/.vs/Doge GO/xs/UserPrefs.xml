@@ -3,9 +3,8 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/MapMode/MapCameraControl.cs">
     <Files>
       <File FileName="Assets/Script/GameManager.cs" Line="31" Column="42" />
-      <File FileName="Assets/Script/MapMode/MapCameraControl.cs" Line="69" Column="64" />
+      <File FileName="Assets/Script/MapMode/MapCameraControl.cs" Line="98" Column="30" />
       <File FileName="Assets/Script/AdManager.cs" Line="43" Column="1" />
-      <File FileName="Assets/Script/MapMode/PointingNorth.cs" Line="17" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

@@ -20,9 +20,15 @@ public class MapCameraControl : MonoBehaviour
     public Vector2 camAngle;
     public Vector2 camDistance;
 
+    public Transform compass;
+    public GameObject sky;
+
 	private void Start()
 	{
         ChangeViewAngle(scaleValue);
+
+        compass.eulerAngles = Vector3.forward * Input.compass.trueHeading;
+
 	}
 
 	void Update()
@@ -66,7 +72,7 @@ public class MapCameraControl : MonoBehaviour
         {
             Vector2 lastPos = Input.GetTouch(0).deltaPosition;
 
-            world.Rotate(-Vector3.up * lastPos.x, Space.World);
+            RotateView(lastPos.x);
         }
     }
 
@@ -79,5 +85,18 @@ public class MapCameraControl : MonoBehaviour
         pos.z = (camDistance.y - camDistance.x) * _value + camDistance.x;
         cam.localPosition = pos;
 
+    }
+
+    float skyOffset = 0;
+
+    void RotateView(float _amount)
+    {
+        world.Rotate(-Vector3.up * _amount, Space.World);
+
+        compass.Rotate(Vector3.forward * _amount, Space.World);
+
+        skyOffset += _amount;
+
+        sky.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(skyOffset, 0));
     }
 }

@@ -10,11 +10,18 @@ public class PointingNorth : MonoBehaviour
     {
         Input.compass.enabled = true;
 
+        compass.eulerAngles = Vector3.forward * Input.compass.trueHeading;
+
 	}
 
 	private void Update()
 	{
-        compass.eulerAngles = Vector3.forward * Input.compass.trueHeading;
+        if (!Input.touchSupported)
+            return;
+        
+        Vector2 lastPos = Input.GetTouch(0).deltaPosition;
+
+        compass.Rotate(Vector3.forward * lastPos.x, Space.World);
 		
 	}
 

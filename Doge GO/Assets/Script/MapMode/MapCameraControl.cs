@@ -9,6 +9,7 @@ public class MapCameraControl : MonoBehaviour
     public Vector2 scaleLimit = new Vector2(0, 8);
 
     public Transform cam;
+    public Transform camParent;
 
     float currentDistance;  //当前两点距离
 
@@ -71,7 +72,8 @@ public class MapCameraControl : MonoBehaviour
 
     void ChangeViewAngle(float _value)
     {
-        transform.eulerAngles = new Vector3((camAngle.y - camAngle.x) * _value + camAngle.x, 0, 0);
+        float angle = (camAngle.y - camAngle.x) * _value + camAngle.x;
+        camParent.eulerAngles = new Vector3(angle, 0, 0);
 
         Vector3 pos = cam.localPosition;
         pos.z = (camDistance.y - camDistance.x) * _value + camDistance.x;

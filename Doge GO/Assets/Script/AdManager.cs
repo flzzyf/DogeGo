@@ -9,7 +9,7 @@ public class AdManager : MonoBehaviour
 
 	void Start ()
     {
-        Advertisement.Initialize(adID);
+        //Advertisement.Initialize(adID);
 	}
 	
 	void Update ()

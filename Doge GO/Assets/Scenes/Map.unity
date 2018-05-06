@@ -1384,7 +1384,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1682949556}
         m_MethodName: ShowAd
         m_Mode: 5
         m_Arguments:
@@ -1877,6 +1877,7 @@ GameObject:
   - component: {fileID: 1682949554}
   - component: {fileID: 1682949555}
   - component: {fileID: 1682949558}
+  - component: {fileID: 1682949556}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1950,6 +1951,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchParticle: {fileID: 1807005775933952, guid: 04c9874a99f504c6aae7bf9291eab67e,
     type: 2}
+--- !u!114 &1682949556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1682949550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f76fb1d8c74455e9b7424afd143a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1682949558
 MonoBehaviour:
   m_ObjectHideFlags: 0

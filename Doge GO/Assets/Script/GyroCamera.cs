@@ -19,11 +19,16 @@ public class GyroCamera : MonoBehaviour
     {
         gyroSupported = SystemInfo.supportsGyroscope;
 
-        //GameManager.instance.t[0].text = "Gyro Supported: " + gyroSupported.ToString();
+        Input.gyro.enabled = true;
+
+        GameManager.instance.SetText("Gyro Supported", gyroSupported.ToString());
+        GameManager.instance.SetText("Gyro Supported2", Input.gyro.enabled.ToString());
 
         GameObject camParent = new GameObject("CamParent");
         camParent.transform.position = transform.position;
         transform.parent = camParent.transform;
+
+
 
         if (gyroSupported)
         {
@@ -35,7 +40,7 @@ public class GyroCamera : MonoBehaviour
 
         }
 
-        Input.location.Start(10, 5);
+        //Input.location.Start(10, 5);
     }
 
 	void Update () 
@@ -47,7 +52,13 @@ public class GyroCamera : MonoBehaviour
 
             transform.localRotation = gyroscope.attitude * rotationFix;
 
+            GameManager.instance.SetText("Gyro", Input.gyro.attitude.ToEulerAngles().ToString());
+
+
         }
+
+        GameManager.instance.SetText("Acc", Input.acceleration.ToString());
+
     }
 
 }

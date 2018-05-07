@@ -1982,6 +1982,7 @@ MonoBehaviour:
   camDistance: {x: 6.6, y: 16}
   compass: {fileID: 248587917}
   sky: {fileID: 1750593631}
+  test: 0
 --- !u!1 &1744101489
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,6 +23,8 @@ public class MapCameraControl : MonoBehaviour
     public Transform compass;
     public GameObject sky;
 
+    public float test;
+
 	private void Start()
 	{
         ChangeViewAngle(scaleValue);
@@ -33,6 +35,8 @@ public class MapCameraControl : MonoBehaviour
 
 	void Update()
     {
+        RotateView(test);
+
         if (!Input.touchSupported)
             return;
 

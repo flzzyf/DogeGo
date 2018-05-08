@@ -37,7 +37,7 @@ public class MapManager : MonoBehaviour
             Vector2 offset = new Vector2(Input.location.lastData.longitude - lastPos.x,
                                          Input.location.lastData.latitude - lastPos.y);
 
-            //GameManager.instance.SetText(0, offset.ToString());
+            GameManager.instance.SetText("GPS移动", offset.ToString("f5"));
 
             StartCoroutine(LoadMap(zoom));
 

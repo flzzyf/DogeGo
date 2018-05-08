@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.Apple;
 
 public class AdManager : MonoBehaviour
 {
     string adID = "reward";
-
-	void Start ()
-    {
-        //Advertisement.Initialize(adID);
-	}
 	
 	void Update ()
     {
@@ -28,6 +24,7 @@ public class AdManager : MonoBehaviour
             GameManager.instance.SetText("广告状态", "准备中");
 
         }
+
     }
 
 

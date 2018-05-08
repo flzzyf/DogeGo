@@ -10,11 +10,6 @@ public class AdManager : MonoBehaviour
 	
 	void Update ()
     {
-		if(Input.GetKeyDown(KeyCode.E))
-        {
-            ShowAd(adID);
-        }
-
         if(Advertisement.IsReady(adID))
         {
             GameManager.instance.SetText("广告状态", "就绪");
@@ -32,7 +27,29 @@ public class AdManager : MonoBehaviour
     {
         if (Advertisement.IsReady(_id))
         {
-            Advertisement.Show(_id);
+            ShowOptions showOptions = new ShowOptions();
+            showOptions.resultCallback = AdOver;
+
+            Advertisement.Show(_id, showOptions);
+        }
+    }
+
+    void AdOver(ShowResult result)
+    {
+        if(result == ShowResult.Failed)
+        {
+            GameManager.instance.SetText("广告播放", "失败");
+
+        }
+        else if(result == ShowResult.Skipped)
+        {
+            GameManager.instance.SetText("广告播放", "跳过");
+
+        }
+        else if(result == ShowResult.Finished)
+        {
+            GameManager.instance.SetText("广告播放", "完成");
+
         }
     }
 }

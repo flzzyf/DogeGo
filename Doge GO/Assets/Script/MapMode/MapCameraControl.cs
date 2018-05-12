@@ -42,41 +42,22 @@ public class MapCameraControl : MonoBehaviour
 
         if (Input.touchCount > 1)    //多点齐下
         {
-            if (Input.GetTouch(0).phase == TouchPhase.Began ||
-               Input.GetTouch(1).phase == TouchPhase.Began) //点击开始
-            {
-                currentDistance = Vector2.Distance(Input.GetTouch(0).position,
-                                                   Input.GetTouch(1).position);
-            }
-            else if (Input.GetTouch(0).phase == TouchPhase.Moved ||
-                    Input.GetTouch(1).phase == TouchPhase.Moved)
-            {
-                float formerDistance = currentDistance;
+            float distanceChange = TouchControl.instance.doubleTouchScaleValue;
 
-                currentDistance = Vector2.Distance(Input.GetTouch(0).position,
-                                                   Input.GetTouch(1).position);
+            scaleValue -= distanceChange;
 
-                float distanceChange = currentDistance - formerDistance;
+            scaleValue = Mathf.Clamp01(scaleValue);
 
-                distanceChange *= scaleRate;
-                distanceChange *= Time.deltaTime;
+            GameManager.instance.SetText("scaleValue", scaleValue.ToString("f4"));
 
-                scaleValue -= distanceChange;
-
-                scaleValue = Mathf.Clamp01(scaleValue);
-
-                //GameManager.instance.SetText("scaleValue", scaleValue.ToString("f4"));
-
-                ChangeViewAngle(scaleValue);
- 
-            }
+            ChangeViewAngle(scaleValue);
 
         }
         else //单点
         {
-            Vector2 lastPos = Input.GetTouch(0).deltaPosition;
+            float touchMovedX = TouchControl.instance.singleTouchMovedValue.x;
 
-            RotateView(lastPos.x);
+            RotateView(touchMovedX);
         }
     }
 

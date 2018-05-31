@@ -53,7 +53,7 @@ public class MapCameraControl : MonoBehaviour
             ChangeViewAngle(scaleValue);
 
         }
-        else //单点
+        else if(Input.touchCount == 1) //单点
         {
             float touchMovedX = TouchControl.instance.singleTouchMovedValue.x;
 

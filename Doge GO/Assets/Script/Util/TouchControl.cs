@@ -67,6 +67,11 @@ public class TouchControl : MonoBehaviour
 
             }
         }
+        else
+        {
+            singleTouchMovedValue = Vector2.zero;
+            doubleTouchScaleValue = 0;
+        }
 		
 	}
 }

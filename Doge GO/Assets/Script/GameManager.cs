@@ -54,4 +54,47 @@ public class GameManager : MonoBehaviour
         SetText("test", "click");
     }
 
+	private void OnApplicationQuit()
+	{
+		
+	}
+
+	private void OnApplicationPause(bool pause)
+	{
+        //按下Home键
+        Debug.Log("暂停");
+
+        if(pause)
+        {
+            Debug.Log("pause");
+
+        }
+        else
+        {
+            Debug.Log("!pause");
+
+        }
+	}
+
+	private void OnApplicationFocus(bool focus)
+	{
+        Debug.Log("取消暂停");
+		
+	}
+
+	private void Update()
+	{
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("退出");
+            Application.Quit();
+        }
+
+        if(!Application.isFocused)
+        {
+            Debug.Log("非激活状态");
+            Application.Quit();
+        }
+	}
+
 }

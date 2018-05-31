@@ -26,9 +26,6 @@ public class TouchParticle : MonoBehaviour
                     Vector3 particlePos = GetScreenPoint(touch.position, 7);
 
                     touchParticles[touch.fingerId].transform.position = particlePos;
-
-                    GameManager.instance.SetText("touchPos", particlePos.ToString());
-
                 }
                 else if (touch.phase == TouchPhase.Ended)
                 {

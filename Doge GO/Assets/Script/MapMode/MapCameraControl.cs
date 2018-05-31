@@ -83,8 +83,6 @@ public class MapCameraControl : MonoBehaviour
         compass.Rotate(Vector3.forward * _amount, Space.World);
 
         skyOffset += _amount * Time.deltaTime / skyRotateRate;
-        GameManager.instance.SetText("skyOffset", skyOffset.ToString("f2"));
-
 
         sky.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(skyOffset, 0));
     }

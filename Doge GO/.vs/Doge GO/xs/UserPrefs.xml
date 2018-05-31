@@ -1,11 +1,9 @@
 ﻿<Properties StartupConfiguration="{4D89768A-F781-EE9C-F331-E911CD1A03E6}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/GameManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/MapMode/MapManager.cs">
     <Files>
-      <File FileName="Assets/Script/GameManager.cs" Line="85" Column="23" />
-      <File FileName="Assets/Script/MapMode/MapCameraControl.cs" Line="60" Column="29" />
-      <File FileName="Assets/Script/Util/TouchControl.cs" Line="73" Column="39" />
-      <File FileName="Assets/Script/Common/TouchParticle.cs" Line="13" Column="34" />
+      <File FileName="Assets/Script/GameManager.cs" Line="78" Column="5" />
+      <File FileName="Assets/Script/MapMode/MapManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

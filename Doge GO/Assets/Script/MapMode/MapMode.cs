@@ -13,10 +13,8 @@ public class MapMode : MonoBehaviour
 	
 	void Update () 
     {
-        /*
         float compassNorth = Input.compass.trueHeading;
 
         player.eulerAngles = Vector3.up * compassNorth;
-        */
 	}
 }

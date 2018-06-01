@@ -257,7 +257,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GPS Map
+  m_Text: "GPS\u6A21\u5F0F"
 --- !u!222 &144117245
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: AR
+  m_Text: "AR\u6A21\u5F0F"
 --- !u!222 &1025645262
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1186,7 +1186,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Gyro
+  m_Text: "\u9640\u87BA\u4EEA\u6A21\u5F0F"
 --- !u!222 &2003945046
 CanvasRenderer:
   m_ObjectHideFlags: 0

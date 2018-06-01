@@ -15,42 +15,55 @@ public class MapManager : MonoBehaviour
 
     public Renderer mapPlane;
 
-    Vector2 lastPos;
+    Vector2 originPos;
+    Vector2 posOffset = Vector2.zero;
+
+    bool mapLoaded = false;
 
 	void Start () 
     {
-        StartCoroutine(LoadMap(zoom));
 
         Input.location.Start(10, 5);
-
-        lastPos.x = Input.location.lastData.longitude;
-        lastPos.y = Input.location.lastData.latitude;
 
 	}
 	
 	void Update () 
     {
-        if(Input.location.lastData.longitude != lastPos.x || 
-           Input.location.lastData.latitude != lastPos.y)
+        if (!Input.location.isEnabledByUser)
         {
+            GameManager.instance.SetText("警告", "定位服务无法使用");
 
-            Vector2 offset = new Vector2(Input.location.lastData.longitude - lastPos.x,
-                                         Input.location.lastData.latitude - lastPos.y);
-
-            GameManager.instance.SetText("GPS移动", offset.ToString("f5"));
-
-            StartCoroutine(LoadMap(zoom));
-
-            lastPos.x = Input.location.lastData.longitude;
-            lastPos.y = Input.location.lastData.latitude;
+            return;
         }
 
-        GameManager.instance.SetText("loc", 
+
+        GameManager.instance.SetText("loc",
             Input.location.lastData.longitude + "," +
             Input.location.lastData.latitude);
 
+        if (originPos == Vector2.zero)
+        {
+            originPos = new Vector2(Input.location.lastData.longitude,
+                                Input.location.lastData.latitude);
 
+            GameManager.instance.SetText("originPos", originPos.ToString("f5"));
 
+            return;
+
+        }
+
+        posOffset = new Vector2(Input.location.lastData.longitude - originPos.x,
+                                Input.location.lastData.latitude - originPos.y);
+
+        if(posOffset.x != 0 || posOffset.y != 0)
+        {
+            if(!mapLoaded)
+                StartCoroutine(LoadMap(zoom));
+
+            GameManager.instance.SetText("GPS移动偏移", posOffset.ToString("f5"));
+
+            mapPlane.material.SetTextureOffset("_MainTex", posOffset);
+        }
 	}
 
     IEnumerator LoadMap(float _zoom = 16)
@@ -72,5 +85,6 @@ public class MapManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
 
         mapPlane.material.mainTexture = www.texture;
+        mapLoaded = true;
     }
 }

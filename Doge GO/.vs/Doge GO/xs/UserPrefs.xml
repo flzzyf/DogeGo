@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{4D89768A-F781-EE9C-F331-E911CD1A03E6}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/MapMode/MapMode.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/AR/DeployStageOnce.cs">
     <Files>
-      <File FileName="Assets/Script/GameManager.cs" Line="78" Column="5" />
-      <File FileName="Assets/Script/MapMode/MapManager.cs" Line="16" Column="30" />
-      <File FileName="Assets/Script/MapMode/MapMode.cs" Line="19" Column="1" />
+      <File FileName="Assets/Script/GameManager.cs" Line="9" Column="1" />
+      <File FileName="Assets/Script/MapMode/MapManager.cs" Line="66" Column="1" />
+      <File FileName="Assets/Script/MapMode/MapMode.cs" Line="57" Column="52" />
+      <File FileName="Assets/Script/AR/DeployStageOnce.cs" Line="38" Column="90" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

@@ -62,6 +62,10 @@ public class GameManager : MonoBehaviour
 	private void OnApplicationPause(bool pause)
 	{
         //按下Home键
+
+        if (Application.isEditor)
+            return;
+
         if(pause)
         {
             Debug.Log("pause");
@@ -90,7 +94,7 @@ public class GameManager : MonoBehaviour
 
         if(!Application.isFocused)
         {
-            Debug.Log("非激活状态");
+            //手机上退出到后台
             Application.Quit();
         }
 	}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MapMode : MonoBehaviour 
 {
@@ -21,8 +22,14 @@ public class MapMode : MonoBehaviour
     public GameObject dogePrefab;
     public float dogeDistance = 3f;
 
+    MapCameraControl mapCameraControl;
+
+    public Toggle toggleAutoFacingNorth;
+
 	void Start () 
     {
+        mapCameraControl = GetComponent<MapCameraControl>();
+
         Input.compass.enabled = true;
 
         InitCreateObjects();
@@ -30,9 +37,15 @@ public class MapMode : MonoBehaviour
 	
 	void Update () 
     {
+        //人物朝向旋转
         float compassNorth = Input.compass.trueHeading;
-
         player.localEulerAngles = Vector3.up * compassNorth;
+
+        //镜头旋转
+        if (toggleAutoFacingNorth.isOn)
+        {
+            mapCameraControl.RotateViewHorizontal(compassNorth);
+        }
 	}
 
     void InitCreateObjects()
@@ -56,9 +69,17 @@ public class MapMode : MonoBehaviour
         {
             int index = Random.Range(0, pos.Count);
             pos.RemoveAt(index);
-            Instantiate(dogePrefab, pos[index], Quaternion.identity, world);
+            Instantiate(dogePrefab, pos[index], Quaternion.EulerRotation(Vector3.up * Random.Range(0, 360)), world);
 
         }
 
     }
+
+    /*
+    public void ToggleAutoFacing()
+    {
+        autoFacingNorth = _toggle.isOn;
+        GameManager.instance.SetText("自动朝向开启", autoFacingNorth.ToString());
+
+    }*/
 }

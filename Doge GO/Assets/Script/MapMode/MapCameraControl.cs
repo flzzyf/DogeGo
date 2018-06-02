@@ -20,22 +20,19 @@ public class MapCameraControl : MonoBehaviour
     public Vector2 camAngle;
     public Vector2 camDistance;
 
-    public Transform compass;
     public GameObject sky;
-
-    public float test;
+    public Transform compass;
 
 	private void Start()
 	{
-        ChangeViewAngle(scaleValue);
-
+        RotateViewVertical(scaleValue);
         compass.eulerAngles = Vector3.forward * Input.compass.trueHeading;
 
 	}
 
 	void Update()
     {
-        RotateView(test);
+
 
         if (!Input.touchSupported)
             return;
@@ -50,18 +47,18 @@ public class MapCameraControl : MonoBehaviour
 
             //GameManager.instance.SetText("scaleValue", scaleValue.ToString("f4"));
 
-            ChangeViewAngle(scaleValue);
+            RotateViewVertical(scaleValue);
 
         }
         else if(Input.touchCount == 1) //单点
         {
             float touchMovedX = TouchControl.instance.singleTouchMovedValue.x;
 
-            RotateView(touchMovedX);
+            RotateViewHorizontal(touchMovedX);
         }
     }
 
-    void ChangeViewAngle(float _value)
+    void RotateViewVertical(float _value)
     {
         float angle = (camAngle.y - camAngle.x) * _value + camAngle.x;
         camParent.eulerAngles = new Vector3(angle, 0, 0);
@@ -76,7 +73,7 @@ public class MapCameraControl : MonoBehaviour
 
     float skyRotateRate = 6f;
 
-    void RotateView(float _amount)
+    public void RotateViewHorizontal(float _amount)
     {
         world.Rotate(-Vector3.up * _amount, Space.World);
 
@@ -86,4 +83,10 @@ public class MapCameraControl : MonoBehaviour
 
         sky.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(skyOffset, 0));
     }
+
+    void SetViewRotationHorizontal()
+    {
+        
+    }
+
 }

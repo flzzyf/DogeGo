@@ -8,8 +8,6 @@ public class DeployStageOnce : MonoBehaviour
     private PositionalDeviceTracker _deviceTracker;
     private GameObject _previousAnchor;
 
-    public GameObject qwe;
-
 	void Start()
 	{
         //AnchorStage.SetActive(false);
@@ -41,16 +39,11 @@ public class DeployStageOnce : MonoBehaviour
 
         // but now the anchor doesn't create a GameObject, so we will have to with the HitTestResult position and rotation values
 
-        GameObject anchorGO = Instantiate(qwe, result.Position, result.Rotation);
-        //anchorGO.transform.position = result.Position;
-        //anchorGO.transform.rotation = result.Rotation;
-
         //if (anchor != null)
         //{
-            AnchorStage.transform.parent = anchorGO.transform;
 
-            AnchorStage.transform.localPosition = Vector3.zero;
-            AnchorStage.transform.localRotation = Quaternion.identity;
+        AnchorStage.transform.position = result.Position;
+        AnchorStage.transform.rotation = result.Rotation;
 
             AnchorStage.SetActive(true);
 
@@ -58,6 +51,7 @@ public class DeployStageOnce : MonoBehaviour
 
         // Clean up
 
+        /*
         if (_previousAnchor != null)
         {
 
@@ -66,7 +60,8 @@ public class DeployStageOnce : MonoBehaviour
         }
 
         // Save it
-        _previousAnchor = anchorGO;
+        _previousAnchor = AnchorStage;
+        */
 
     }
 }

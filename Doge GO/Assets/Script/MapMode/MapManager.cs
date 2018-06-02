@@ -78,11 +78,11 @@ public class MapManager : MonoBehaviour
 
         if(maxLoadingTime <= 0)
         {
-            GameManager.instance.SetText("错误", "位置信息加载失败");
+            GameManager.instance.SetText("错误", "位置加载失败");
         }
         else
         {
-            GameManager.instance.SetText("咕", "位置信息加载完成");
+            GameManager.instance.SetText("咕", "位置加载完成");
 
             StartCoroutine(LoadMap(zoom));
 

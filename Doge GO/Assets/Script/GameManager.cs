@@ -62,8 +62,6 @@ public class GameManager : MonoBehaviour
 	private void OnApplicationPause(bool pause)
 	{
         //按下Home键
-        Debug.Log("暂停");
-
         if(pause)
         {
             Debug.Log("pause");

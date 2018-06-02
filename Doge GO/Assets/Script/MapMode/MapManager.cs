@@ -18,12 +18,15 @@ public class MapManager : MonoBehaviour
     Vector2 originPos;
     Vector2 posOffset = Vector2.zero;
 
-    bool mapLoaded = false;
-
 	void Start () 
     {
+        if (!Input.location.isEnabledByUser)
+        {
+            GameManager.instance.SetText("警告", "定位服务无法使用");
+            return;
+        }
 
-        Input.location.Start(10, 5);
+        StartCoroutine(StartLoadLocation());
 
 	}
 	
@@ -31,8 +34,6 @@ public class MapManager : MonoBehaviour
     {
         if (!Input.location.isEnabledByUser)
         {
-            GameManager.instance.SetText("警告", "定位服务无法使用");
-
             return;
         }
 
@@ -57,25 +58,41 @@ public class MapManager : MonoBehaviour
 
         if(posOffset.x != 0 || posOffset.y != 0)
         {
-            if(!mapLoaded)
-                StartCoroutine(LoadMap(zoom));
-
             GameManager.instance.SetText("GPS移动偏移", posOffset.ToString("f5"));
 
             mapPlane.material.SetTextureOffset("_MainTex", posOffset);
         }
 	}
 
+    IEnumerator StartLoadLocation()
+    {
+        float maxLoadingTime = 10f;
+
+        Input.location.Start(10, 5);
+
+        while(Input.location.status == LocationServiceStatus.Initializing && maxLoadingTime > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            maxLoadingTime--;
+        }
+
+        if(maxLoadingTime <= 0)
+        {
+            GameManager.instance.SetText("错误", "位置信息加载失败");
+        }
+        else
+        {
+            GameManager.instance.SetText("咕", "位置信息加载完成");
+
+            StartCoroutine(LoadMap(zoom));
+
+        }
+    }
+
     IEnumerator LoadMap(float _zoom = 16)
     {
         float lon = Input.location.lastData.longitude;
         float lat = Input.location.lastData.latitude;
-
-        if (!Input.location.isEnabledByUser)
-        {
-            lon = 119.1657f;
-            lat = 26.06639f;
-        }
 
         string url = string.Format("https://api.mapbox.com/styles/v1/mapbox/{0}/static/{1},{2},{3},0/{4}x{5}@2x?access_token={6}&attribution=false&logo=false",
                                    style, lon, lat, _zoom, size.x, size.y, key);
@@ -85,6 +102,5 @@ public class MapManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
 
         mapPlane.material.mainTexture = www.texture;
-        mapLoaded = true;
     }
 }

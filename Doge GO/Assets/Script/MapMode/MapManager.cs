@@ -38,7 +38,7 @@ public class MapManager : MonoBehaviour
         }
 
 
-        GameManager.instance.SetText("loc",
+        GameManager.instance.SetText("当前位置",
             Input.location.lastData.longitude + "," +
             Input.location.lastData.latitude);
 
@@ -47,7 +47,7 @@ public class MapManager : MonoBehaviour
             originPos = new Vector2(Input.location.lastData.longitude,
                                 Input.location.lastData.latitude);
 
-            GameManager.instance.SetText("originPos", originPos.ToString("f5"));
+            GameManager.instance.SetText("初始位置", originPos.ToString("f5"));
 
             return;
 
@@ -58,12 +58,12 @@ public class MapManager : MonoBehaviour
 
         if(posOffset.x != 0 || posOffset.y != 0)
         {
-            GameManager.instance.SetText("GPS移动偏移", posOffset.ToString("f5"));
+            GameManager.instance.SetText("GPS移动量", posOffset.ToString("f5"));
 
             mapPlane.material.SetTextureOffset("_MainTex", posOffset);
         }
 	}
-
+    //开始加载位置
     IEnumerator StartLoadLocation()
     {
         float maxLoadingTime = 10f;
@@ -82,8 +82,6 @@ public class MapManager : MonoBehaviour
         }
         else
         {
-            GameManager.instance.SetText("咕", "位置加载完成");
-
             StartCoroutine(LoadMap(zoom));
 
         }

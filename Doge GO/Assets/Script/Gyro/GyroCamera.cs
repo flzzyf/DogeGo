@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GyroCamera : MonoBehaviour 
 {
+    public Transform gyroCamera;
+
     Quaternion rotationFix;
 
     Gyroscope gyroscope;
@@ -25,10 +27,8 @@ public class GyroCamera : MonoBehaviour
         GameManager.instance.SetText("Gyro Supported2", Input.gyro.enabled.ToString());
 
         GameObject camParent = new GameObject("CamParent");
-        camParent.transform.position = transform.position;
-        transform.parent = camParent.transform;
-
-
+        camParent.transform.position = gyroCamera.position;
+        gyroCamera.parent = camParent.transform;
 
         if (gyroSupported)
         {
@@ -40,7 +40,6 @@ public class GyroCamera : MonoBehaviour
 
         }
 
-        //Input.location.Start(10, 5);
     }
 
 	void Update () 
@@ -50,15 +49,10 @@ public class GyroCamera : MonoBehaviour
             gyroscope = Input.gyro;
             gyroscope.enabled = true;
 
-            transform.localRotation = gyroscope.attitude * rotationFix;
+            gyroCamera.localRotation = gyroscope.attitude * rotationFix;
 
             GameManager.instance.SetText("Gyro", Input.gyro.attitude.ToEulerAngles().ToString());
 
-
         }
-
-        GameManager.instance.SetText("Acc", Input.acceleration.ToString());
-
     }
-
 }

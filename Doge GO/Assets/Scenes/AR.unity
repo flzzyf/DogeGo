@@ -5155,6 +5155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnchorStage: {fileID: 84114414}
+  cube: {fileID: 1389260935924858, guid: 720a1248d67aa47e59cd440275c3eb56, type: 2}
 --- !u!1 &1258885738
 GameObject:
   m_ObjectHideFlags: 0

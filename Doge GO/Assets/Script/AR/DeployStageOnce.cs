@@ -5,12 +5,13 @@ using Vuforia;
 public class DeployStageOnce : MonoBehaviour
 {
     public GameObject AnchorStage;
+    public GameObject cube;
     private PositionalDeviceTracker _deviceTracker;
     private GameObject _previousAnchor;
 
 	void Start()
 	{
-        //AnchorStage.SetActive(false);
+        AnchorStage.SetActive(false);
 	}
 
 	private void Awake()
@@ -32,24 +33,20 @@ public class DeployStageOnce : MonoBehaviour
 
     public void OnInteractiveHitTest(HitTestResult result)
     {
-        // same anchor code from before
-        //GameManager.instance.SetText("2", result.Position.ToString());
+        GameManager.instance.SetText("pos", result.Position.ToString());
+        GameManager.instance.SetText("rot", result.Rotation.ToString());
 
-        Anchor anchor = _deviceTracker.CreatePlaneAnchor(Guid.NewGuid().ToString(), result);
+        var anchor = _deviceTracker.CreatePlaneAnchor(Guid.NewGuid().ToString(), result);
 
         // but now the anchor doesn't create a GameObject, so we will have to with the HitTestResult position and rotation values
+        GameObject anchorParent = Instantiate(cube, result.Position, result.Rotation);
+        GameObject anchorGO = Instantiate(AnchorStage, result.Position, result.Rotation);
 
-        //if (anchor != null)
-        //{
+        AnchorStage.transform.parent = anchorParent.transform;
+        AnchorStage.transform.localScale = Vector3.zero;
+        AnchorStage.transform.rotation = Quaternion.identity;
 
-        AnchorStage.transform.position = result.Position;
-        AnchorStage.transform.rotation = result.Rotation;
-
-            AnchorStage.SetActive(true);
-
-        //}
-
-        // Clean up
+        AnchorStage.SetActive(true);
 
         /*
         if (_previousAnchor != null)

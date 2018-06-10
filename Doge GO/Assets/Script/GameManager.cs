@@ -54,49 +54,9 @@ public class GameManager : MonoBehaviour
         SetText("test", "click");
     }
 
-	private void OnApplicationQuit()
-	{
-		
-	}
-
-	private void OnApplicationPause(bool pause)
-	{
-        //按下Home键
-
-        if (Application.isEditor)
-            return;
-
-        if(pause)
-        {
-            Debug.Log("pause");
-
-        }
-        else
-        {
-            Debug.Log("!pause");
-
-        }
-	}
-
-	private void OnApplicationFocus(bool focus)
-	{
-        Debug.Log("取消暂停");
-		
-	}
-
 	private void Update()
 	{
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("退出");
-            Application.Quit();
-        }
 
-        if(!Application.isFocused)
-        {
-            //手机上退出到后台
-            Application.Quit();
-        }
 	}
 
 }

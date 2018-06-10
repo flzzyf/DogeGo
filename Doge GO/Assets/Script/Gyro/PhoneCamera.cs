@@ -18,6 +18,7 @@ public class PhoneCamera : MonoBehaviour
     {
         defaultBackground = image.texture;
 
+        EnableCamera();
     }
 
     public void EnableCamera()
@@ -32,7 +33,6 @@ public class PhoneCamera : MonoBehaviour
         }
 
         //GameManager.instance.t[2].text = "可用摄像头数：" + device.Length;
-
 
         for (int i = 0; i < device.Length; i++)
         {

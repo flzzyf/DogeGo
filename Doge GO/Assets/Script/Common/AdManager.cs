@@ -6,7 +6,7 @@ using UnityEngine.Advertisements;
 public class AdManager : MonoBehaviour
 {
     string adID = "reward";
-	
+    /*
 	void Update ()
     {
         if(Advertisement.IsReady(adID))
@@ -51,5 +51,6 @@ public class AdManager : MonoBehaviour
 
         }
     }
+     */
 }
 
